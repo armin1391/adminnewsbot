@@ -3,7 +3,7 @@
 # ==========================
 
 # توکن ربات بله
-BOT_TOKEN = "1484088959:S5Wy-ohXpUGvS6boDHTSoeeHwKBkXbGGdJ0"
+BOT_TOKEN = "1484088959:KbXd4mTkj8m3UsVBd3GLoJSwW1-ygNK1dgU"
 
 # ==========================
 # مسیر فایل‌ها
