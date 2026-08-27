@@ -25,12 +25,14 @@ def main_menu():
             ],
             [
                 {"text": "👤 حساب من"}
+            ],
+            [
+                {"text": "📚 راهنما و پشتیبانی"}
             ]
         ],
         "resize_keyboard": True,
         "one_time_keyboard": False
     }
-
 
 # ==============================
 # ❌ Remove Keyboard
