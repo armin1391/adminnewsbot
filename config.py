@@ -3,7 +3,7 @@
 # ==============================
 
 # توکن ربات بله
-BOT_TOKEN = "1156458173:e9jwMtFxsb5dk10aXbB_Onv5q4HfAvj0Z6U"
+BOT_TOKEN = "1017520508:7DulKfItdrB6lS2aYOBmLYLv4R-aHODO_V4"
 
 
 # ==============================
