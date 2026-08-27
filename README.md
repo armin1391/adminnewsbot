@@ -1,6 +1,6 @@
 # 🚀 AdMarketBot
 _________________________
-> ⚠️ **Copyright © 2026 AHZAR & Commander04. All Rights Reserved.**
+> ⚠️ **Copyright © 2026 AHZAR  All Rights Reserved.**
 >
 > این پروژه و تمامی کدها، ساختارها و محتوای آن متعلق به **AHZAR & Commander04** بوده و هرگونه کپی، انتشار مجدد، فروش یا استفاده تجاری بدون اجازه صاحبان اثر مجاز نیست.
 _________________________
@@ -510,11 +510,6 @@ git clone https://github.com/armin1391/adminnewsbot.git
 
 **AHZAR**
 
-### و
-
-**Commander04**
-[@commander004](https://github.com/commander004)
-
 </p>
 
 ---
@@ -535,7 +530,7 @@ git clone https://github.com/armin1391/adminnewsbot.git
 
 
 _____________________________
-> ⚠️ **Copyright © 2026 AHZAR & Commander04. All Rights Reserved.**
+> ⚠️ **Copyright © 2026 AHZAR All Rights Reserved.**
 >
 > این پروژه و تمامی کدها، ساختارها و محتوای آن متعلق به **AHZAR & Commander04** بوده و هرگونه کپی، انتشار مجدد، فروش یا استفاده تجاری بدون اجازه صاحبان اثر مجاز نیست.
 > ___________________________
