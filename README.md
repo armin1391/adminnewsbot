@@ -1,5 +1,9 @@
 # 🚀 AdMarketBot
-
+_________________________
+> ⚠️ **Copyright © 2026 AHZAR & Commander04. All Rights Reserved.**
+>
+> این پروژه و تمامی کدها، ساختارها و محتوای آن متعلق به **AHZAR & Commander04** بوده و هرگونه کپی، انتشار مجدد، فروش یا استفاده تجاری بدون اجازه صاحبان اثر مجاز نیست.
+_________________________
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.12+-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/Platform-Bale-00AEEF?style=for-the-badge" alt="Bale">
@@ -528,3 +532,10 @@ git clone https://github.com/armin1391/adminnewsbot.git
 [⬆️ Back to Top](#-admarketbot)
 
 </p>
+
+
+_____________________________
+> ⚠️ **Copyright © 2026 AHZAR & Commander04. All Rights Reserved.**
+>
+> این پروژه و تمامی کدها، ساختارها و محتوای آن متعلق به **AHZAR & Commander04** بوده و هرگونه کپی، انتشار مجدد، فروش یا استفاده تجاری بدون اجازه صاحبان اثر مجاز نیست.
+> ___________________________
