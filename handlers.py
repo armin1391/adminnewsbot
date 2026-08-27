@@ -39,12 +39,14 @@ from keyboards import (
 )
 
 # ==============================
-# 📖 Help & 🆘 Support
+# Help & Support
 # ==============================
 
 from help_support import (
     HELP_TEXT,
-    SUPPORT_TEXT
+    SUPPORT_TEXT,
+    help_support_keyboard,
+    support_keyboard
 )
 
 
@@ -253,60 +255,42 @@ def handle_message(
         return
 
     # ==========================
-    # 📖 Help
-    # ==========================
-
-    if text == "📖 راهنما":
-
-        send_message(
-            api_request,
-            chat_id,
-            HELP_TEXT,
-            reply_markup={
-                "inline_keyboard": [
-                    [
-                        {
-                            "text": "🆘 پشتیبانی",
-                            "callback_data": "support"
-                        }
-                    ]
-                ]
-            }
-        )
-
-        return
-
-    # ==========================
-    # 🆘 Support
-    # ==========================
-
-    if text == "🆘 پشتیبانی":
-
-        send_message(
-            api_request,
-            chat_id,
-            SUPPORT_TEXT,
-            reply_markup={
-                "inline_keyboard": [
-                    [
-                        {
-                            "text": "📖 راهنما",
-                            "callback_data": "help"
-                        }
-                    ]
-                ]
-            }
-        )
-
-        return
-
-    # ==========================
     # Current State
     # ==========================
 
     state = user_states.get(
         user_id
     )
+
+    # ==========================================================
+    # HELP
+    # ==========================================================
+
+    if text == "📚 راهنما":
+
+        send_message(
+            api_request,
+            chat_id,
+            HELP_TEXT,
+            reply_markup=help_support_keyboard()
+        )
+
+        return
+
+    # ==========================================================
+    # SUPPORT
+    # ==========================================================
+
+    if text == "🛠 پشتیبانی":
+
+        send_message(
+            api_request,
+            chat_id,
+            SUPPORT_TEXT,
+            reply_markup=support_keyboard()
+        )
+
+        return
 
     # ==========================================================
     # ADD CHANNEL
@@ -1030,10 +1014,10 @@ def handle_callback(
         return
 
     # ==========================================================
-    # 📖 HELP CALLBACK
+    # HELP OPEN
     # ==========================================================
 
-    if data == "help":
+    if data == "help_open":
 
         api_request(
             "answerCallbackQuery",
@@ -1048,26 +1032,17 @@ def handle_callback(
                 "chat_id": chat_id,
                 "message_id": message_id,
                 "text": HELP_TEXT,
-                "reply_markup": {
-                    "inline_keyboard": [
-                        [
-                            {
-                                "text": "🆘 پشتیبانی",
-                                "callback_data": "support"
-                            }
-                        ]
-                    ]
-                }
+                "reply_markup": help_support_keyboard()
             }
         )
 
         return
 
     # ==========================================================
-    # 🆘 SUPPORT CALLBACK
+    # HELP CLOSE
     # ==========================================================
 
-    if data == "support":
+    if data == "help_close":
 
         api_request(
             "answerCallbackQuery",
@@ -1081,17 +1056,11 @@ def handle_callback(
             {
                 "chat_id": chat_id,
                 "message_id": message_id,
-                "text": SUPPORT_TEXT,
-                "reply_markup": {
-                    "inline_keyboard": [
-                        [
-                            {
-                                "text": "📖 راهنما",
-                                "callback_data": "help"
-                            }
-                        ]
-                    ]
-                }
+                "text": (
+                    "🏠 منوی اصلی\n\n"
+                    "از منوی پایین یکی از گزینه‌ها "
+                    "رو انتخاب کن."
+                )
             }
         )
 
