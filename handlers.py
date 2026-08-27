@@ -871,7 +871,7 @@ def handle_message(
             user_id
         )
 
-        bot_username = "whocheckssmebot"
+        bot_username = "addonbot"
 
         referral_link = (
             f"https://ble.ir/{bot_username}"
