@@ -1,4 +1,4 @@
-# 🚀 AdMarketBot
+# 🚀 Addon Bot
 _________________________
 > ⚠️ **Copyright © 2026 AHZAR All Rights Reserved.**
 >
