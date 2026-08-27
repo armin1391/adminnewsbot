@@ -38,6 +38,15 @@ from keyboards import (
     advertising_channels_keyboard
 )
 
+# ==============================
+# 📖 Help & 🆘 Support
+# ==============================
+
+from help_support import (
+    HELP_TEXT,
+    SUPPORT_TEXT
+)
+
 
 # ==============================
 # Admin
@@ -239,6 +248,54 @@ def handle_message(
         handle_start(
             api_request,
             message
+        )
+
+        return
+
+    # ==========================
+    # 📖 Help
+    # ==========================
+
+    if text == "📖 راهنما":
+
+        send_message(
+            api_request,
+            chat_id,
+            HELP_TEXT,
+            reply_markup={
+                "inline_keyboard": [
+                    [
+                        {
+                            "text": "🆘 پشتیبانی",
+                            "callback_data": "support"
+                        }
+                    ]
+                ]
+            }
+        )
+
+        return
+
+    # ==========================
+    # 🆘 Support
+    # ==========================
+
+    if text == "🆘 پشتیبانی":
+
+        send_message(
+            api_request,
+            chat_id,
+            SUPPORT_TEXT,
+            reply_markup={
+                "inline_keyboard": [
+                    [
+                        {
+                            "text": "📖 راهنما",
+                            "callback_data": "help"
+                        }
+                    ]
+                ]
+            }
         )
 
         return
@@ -970,6 +1027,74 @@ def handle_callback(
     )
 
     if not callback_id or not user_id:
+        return
+
+    # ==========================================================
+    # 📖 HELP CALLBACK
+    # ==========================================================
+
+    if data == "help":
+
+        api_request(
+            "answerCallbackQuery",
+            {
+                "callback_query_id": callback_id
+            }
+        )
+
+        api_request(
+            "editMessageText",
+            {
+                "chat_id": chat_id,
+                "message_id": message_id,
+                "text": HELP_TEXT,
+                "reply_markup": {
+                    "inline_keyboard": [
+                        [
+                            {
+                                "text": "🆘 پشتیبانی",
+                                "callback_data": "support"
+                            }
+                        ]
+                    ]
+                }
+            }
+        )
+
+        return
+
+    # ==========================================================
+    # 🆘 SUPPORT CALLBACK
+    # ==========================================================
+
+    if data == "support":
+
+        api_request(
+            "answerCallbackQuery",
+            {
+                "callback_query_id": callback_id
+            }
+        )
+
+        api_request(
+            "editMessageText",
+            {
+                "chat_id": chat_id,
+                "message_id": message_id,
+                "text": SUPPORT_TEXT,
+                "reply_markup": {
+                    "inline_keyboard": [
+                        [
+                            {
+                                "text": "📖 راهنما",
+                                "callback_data": "help"
+                            }
+                        ]
+                    ]
+                }
+            }
+        )
+
         return
 
     # ==========================================================
