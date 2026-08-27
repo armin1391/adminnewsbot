@@ -25,9 +25,6 @@ def main_menu():
             ],
             [
                 {"text": "👤 حساب من"}
-            ],
-            [
-                {"text": "📚 راهنما و پشتیبانی"}
             ]
         ],
         "resize_keyboard": True,
@@ -104,6 +101,7 @@ def my_channels_keyboard(channels):
 
     for channel in channels:
 
+        # sqlite3.Row → استفاده از [] به جای .get()
         username = (
             channel["channel_username"]
             or channel["channel_name"]
@@ -295,6 +293,7 @@ def advertising_channels_keyboard(channels):
 
     for channel in channels:
 
+        # sqlite3.Row → استفاده از [] به جای .get()
         username = (
             channel["channel_username"]
             or channel["channel_name"]
@@ -328,4 +327,4 @@ def advertising_channels_keyboard(channels):
 
     return {
         "inline_keyboard": keyboard
-            }
+                }
