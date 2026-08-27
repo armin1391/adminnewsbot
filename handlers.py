@@ -38,17 +38,6 @@ from keyboards import (
     advertising_channels_keyboard
 )
 
-# ==============================
-# Help & Support
-# ==============================
-
-from help_support import (
-    HELP_TEXT,
-    SUPPORT_TEXT,
-    help_support_keyboard,
-    support_keyboard
-)
-
 
 # ==============================
 # Admin
@@ -261,36 +250,6 @@ def handle_message(
     state = user_states.get(
         user_id
     )
-
-    # ==========================================================
-    # HELP
-    # ==========================================================
-
-    if text == "📚 راهنما":
-
-        send_message(
-            api_request,
-            chat_id,
-            HELP_TEXT,
-            reply_markup=help_support_keyboard()
-        )
-
-        return
-
-    # ==========================================================
-    # SUPPORT
-    # ==========================================================
-
-    if text == "🛠 پشتیبانی":
-
-        send_message(
-            api_request,
-            chat_id,
-            SUPPORT_TEXT,
-            reply_markup=support_keyboard()
-        )
-
-        return
 
     # ==========================================================
     # ADD CHANNEL
@@ -1011,59 +970,6 @@ def handle_callback(
     )
 
     if not callback_id or not user_id:
-        return
-
-    # ==========================================================
-    # HELP OPEN
-    # ==========================================================
-
-    if data == "help_open":
-
-        api_request(
-            "answerCallbackQuery",
-            {
-                "callback_query_id": callback_id
-            }
-        )
-
-        api_request(
-            "editMessageText",
-            {
-                "chat_id": chat_id,
-                "message_id": message_id,
-                "text": HELP_TEXT,
-                "reply_markup": help_support_keyboard()
-            }
-        )
-
-        return
-
-    # ==========================================================
-    # HELP CLOSE
-    # ==========================================================
-
-    if data == "help_close":
-
-        api_request(
-            "answerCallbackQuery",
-            {
-                "callback_query_id": callback_id
-            }
-        )
-
-        api_request(
-            "editMessageText",
-            {
-                "chat_id": chat_id,
-                "message_id": message_id,
-                "text": (
-                    "🏠 منوی اصلی\n\n"
-                    "از منوی پایین یکی از گزینه‌ها "
-                    "رو انتخاب کن."
-                )
-            }
-        )
-
         return
 
     # ==========================================================
