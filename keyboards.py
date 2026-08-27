@@ -34,6 +34,7 @@ def main_menu():
         "one_time_keyboard": False
     }
 
+
 # ==============================
 # ❌ Remove Keyboard
 # ==============================
@@ -103,7 +104,6 @@ def my_channels_keyboard(channels):
 
     for channel in channels:
 
-        # sqlite3.Row → استفاده از [] به جای .get()
         username = (
             channel["channel_username"]
             or channel["channel_name"]
@@ -295,7 +295,6 @@ def advertising_channels_keyboard(channels):
 
     for channel in channels:
 
-        # sqlite3.Row → استفاده از [] به جای .get()
         username = (
             channel["channel_username"]
             or channel["channel_name"]
@@ -329,4 +328,4 @@ def advertising_channels_keyboard(channels):
 
     return {
         "inline_keyboard": keyboard
-    }
+            }
