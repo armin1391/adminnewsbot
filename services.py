@@ -1410,10 +1410,6 @@ def get_pending_advertisement(
         connection.close()
 
 
-# ==============================
-# Approve Advertisement
-# ==============================
-
 def approve_advertisement(
     advertisement_id,
     owner_id
@@ -1424,11 +1420,16 @@ def approve_advertisement(
 
     try:
 
+        # --------------------------
+        # Get Pending Advertisement
+        # --------------------------
+
         cursor.execute(
             """
             SELECT
                 advertisements.*,
-                channels.owner_id AS channel_owner_id
+                channels.owner_id AS channel_owner_id,
+                channels.channel_username
 
             FROM advertisements
 
@@ -1461,8 +1462,52 @@ def approve_advertisement(
                 "reason": "not_owner"
             }
 
+        price = advertisement["price"]
+
         # --------------------------
-        # Approve
+        # Get Owner Balance
+        # --------------------------
+
+        cursor.execute(
+            """
+            SELECT coins
+            FROM users
+            WHERE user_id = ?
+            """,
+            (owner_id,)
+        )
+
+        owner = cursor.fetchone()
+
+        if not owner:
+
+            return {
+                "success": False,
+                "reason": "owner_not_found"
+            }
+
+        current_balance = owner["coins"]
+
+        new_balance = current_balance + price
+
+        # --------------------------
+        # Add Coins To Channel Owner
+        # --------------------------
+
+        cursor.execute(
+            """
+            UPDATE users
+            SET coins = ?
+            WHERE user_id = ?
+            """,
+            (
+                new_balance,
+                owner_id
+            )
+        )
+
+        # --------------------------
+        # Approve Advertisement
         # --------------------------
 
         cursor.execute(
@@ -1484,13 +1529,47 @@ def approve_advertisement(
                 "reason": "already_processed"
             }
 
+        # --------------------------
+        # Owner Transaction
+        # --------------------------
+
+        cursor.execute(
+            """
+            INSERT INTO transactions (
+                user_id,
+                amount,
+                balance_after,
+                transaction_type,
+                description
+            )
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (
+                owner_id,
+                price,
+                new_balance,
+                "advertisement_income",
+                (
+                    f"دریافت مبلغ تبلیغ شماره "
+                    f"{advertisement_id} در کانال "
+                    f"{advertisement['channel_username']}"
+                )
+            )
+        )
+
+        # --------------------------
+        # Commit All Changes
+        # --------------------------
+
         connection.commit()
 
         return {
             "success": True,
             "advertisement_id": advertisement_id,
             "advertiser_id": advertisement["advertiser_id"],
-            "price": advertisement["price"],
+            "owner_id": owner_id,
+            "price": price,
+            "owner_balance": new_balance,
             "content": advertisement["content"]
         }
 
