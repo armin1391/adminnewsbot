@@ -38,6 +38,7 @@ from keyboards import (
     advertising_channels_keyboard
 )
 
+from admin_notifications import notify_admin_published
 
 # ==============================
 # Admin
@@ -1598,6 +1599,18 @@ def handle_callback(
             channel_id,
             content
         )
+
+        if publish_result:
+
+            notify_admin_published(
+                api_request=api_request,
+                advertiser_id=advertisement["advertiser_id"],
+                owner_id=advertisement["owner_id"],
+                channel_username=advertisement["channel_username"],
+                price=advertisement["price"],
+                content=advertisement["content"],
+                advertisement_id=advertisement_id
+            )
 
         if not publish_result:
 
